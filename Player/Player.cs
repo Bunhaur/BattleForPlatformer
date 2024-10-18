@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Wallet))]
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Jumper))]
 [RequireComponent(typeof(InputService))]
@@ -12,7 +11,6 @@ public class Player : MonoBehaviour
     private PlayerMovement _movementController;
     private Jumper _jumpController;
     private InputService _inputService;
-    private Wallet _wallet;
     private Health _health;
     private float _horizontal;
 
@@ -21,7 +19,6 @@ public class Player : MonoBehaviour
         _movementController = GetComponent<PlayerMovement>();
         _jumpController = GetComponent<Jumper>();
         _inputService = GetComponent<InputService>();
-        _wallet = GetComponent<Wallet>();
         _health = GetComponent<Health>();
     }
 
@@ -48,9 +45,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Coin coin))
-            TakeCoin(coin);
-        else if (collision.TryGetComponent(out HealthBox healthbox))
+        if (collision.TryGetComponent(out HealthBox healthbox))
             TakeHealthBox(healthbox);
     }
 
@@ -82,12 +77,6 @@ public class Player : MonoBehaviour
     {
         _health.ChangeHealth(healthBox.HealthRecovery);
         healthBox.Remove();
-    }
-
-    private void TakeCoin(Coin coin)
-    {
-        _wallet.AddCoin(coin.Price);
-        coin.Remove();
     }
 
     private void Jump()

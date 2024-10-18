@@ -21,22 +21,13 @@ public class EnemyMover : MonoBehaviour
 
     private void Update()
     {
-        if (IsFindPlayer())
-            SetTargetIsPlayer();
-        else
-            SetPoint(_index);
-
         Move();
     }
 
     private bool IsFindPlayer()
     {
         if (_player != null && Vector2.Distance(transform.position, _player.transform.position) < _findDistance)
-        {
-            _point = _player.transform.position;
-
             return true;
-        }
 
         return false;
     }
@@ -56,6 +47,14 @@ public class EnemyMover : MonoBehaviour
         if (transform.position == _point)
         {
             _index = ++_index % _way.Length;
+            SetPoint(_index);
+        }
+        else if (IsFindPlayer() == true)
+        {
+            SetTargetIsPlayer();
+        }
+        else if (IsFindPlayer() == false)
+        {
             SetPoint(_index);
         }
 

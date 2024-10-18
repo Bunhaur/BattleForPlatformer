@@ -16,12 +16,16 @@ public class EnemyHealth : MonoBehaviour
     public void Hit(int value)
     {
         if (_canDamaged)
+        {
             _health = Mathf.Clamp(_health -= value, _minHealth, _maxHealth);
+            _timeoutDamageWork = StartCoroutine(TimeoutDamage());
 
-        _timeoutDamageWork = StartCoroutine(TimeoutDamage());
+            if (_health == 0)
+            {
+                Dead?.Invoke();
+            }
+        }
 
-        if (_health == 0)
-            Dead?.Invoke();
     }
 
     private IEnumerator TimeoutDamage()

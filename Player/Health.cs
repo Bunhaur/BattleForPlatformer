@@ -16,12 +16,16 @@ public class Health : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
-        _health = Mathf.Clamp(_health += value, _minHealth, _maxHealth);
+        if (_canDamaged)
+        {
+            _health = Mathf.Clamp(_health += value, _minHealth, _maxHealth);
+            _timeoutDamageWork = StartCoroutine(TimeoutDamage());
 
-        _timeoutDamageWork = StartCoroutine(TimeoutDamage());
-
-        if (_health == _minHealth)
-            Dead?.Invoke();
+            if (_health == _minHealth)
+            {
+                Dead?.Invoke();
+            }
+        }
     }
 
     private IEnumerator TimeoutDamage()

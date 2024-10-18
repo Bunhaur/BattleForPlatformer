@@ -14,11 +14,11 @@ public class Health : MonoBehaviour
 
     public event Action Dead;
 
-    public void ChangeHealth(int value)
+    public void DicreaseHealth(int value)
     {
         if (_canDamaged)
         {
-            _health = Mathf.Clamp(_health += value, _minHealth, _maxHealth);
+            _health = Mathf.Clamp(_health -= value, _minHealth, _maxHealth);
             _timeoutDamageWork = StartCoroutine(TimeoutDamage());
 
             if (_health == _minHealth)
@@ -26,6 +26,11 @@ public class Health : MonoBehaviour
                 Dead?.Invoke();
             }
         }
+    }
+
+    public void AddHealth(int value)
+    {
+        _health = Mathf.Clamp(_health -= value, _minHealth, _maxHealth);
     }
 
     private IEnumerator TimeoutDamage()

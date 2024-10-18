@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     private void TakeHit(Enemy enemy)
     {
         _jumpController.Jump();
-        _health.ChangeHealth(-enemy.Damage);
+        _health.DicreaseHealth(enemy.Damage);
     }
 
     private void Flip()
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
 
     private void TakeHealthBox(HealthBox healthBox)
     {
-        _health.ChangeHealth(healthBox.HealthRecovery);
+        _health.AddHealth(healthBox.HealthRecovery);
         healthBox.Remove();
     }
 

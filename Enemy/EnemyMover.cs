@@ -15,12 +15,13 @@ public class EnemyMover : MonoBehaviour
 
     private void Awake()
     {
-        SetPoint(_index);
+        _point = _way[_index];
         Flip();
     }
 
     private void Update()
     {
+        SetTarget();
         Move();
     }
 
@@ -32,32 +33,19 @@ public class EnemyMover : MonoBehaviour
         return false;
     }
 
-    private void SetPoint(int index)
+    private void SetTarget()
     {
-        _point = _way[index];
-    }
+        if (IsFindPlayer())
+            _point = _player.transform.position;
+        else
+            _point = _way[_index];
 
-    private void SetTargetIsPlayer()
-    {
-        _point = _player.transform.position;
+        if (transform.position == _point)
+            _index = ++_index % _way.Length;
     }
 
     private void Move()
     {
-        if (transform.position == _point)
-        {
-            _index = ++_index % _way.Length;
-            SetPoint(_index);
-        }
-        else if (IsFindPlayer() == true)
-        {
-            SetTargetIsPlayer();
-        }
-        else if (IsFindPlayer() == false)
-        {
-            SetPoint(_index);
-        }
-
         Flip();
         transform.position = Vector2.MoveTowards(transform.position, _point, _speed * Time.deltaTime);
     }

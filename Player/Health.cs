@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
 
     public void AddHealth(int value)
     {
-        _health = Mathf.Clamp(_health -= value, _minHealth, _maxHealth);
+        _health = Mathf.Clamp(_health += value, _minHealth, _maxHealth);
     }
 
     private IEnumerator TimeoutDamage()

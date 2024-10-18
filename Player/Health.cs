@@ -9,7 +9,6 @@ public class Health : MonoBehaviour
     private int _health = 85;
     private bool _canDamaged = true;
     private float _timeout = .5f;
-
     private Coroutine _timeoutDamageWork;
 
     public event Action Dead;

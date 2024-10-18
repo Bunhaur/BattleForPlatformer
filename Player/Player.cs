@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Jumper))]
 [RequireComponent(typeof(InputService))]
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(PlayerHealth))]
 public class Player : MonoBehaviour
 {
     public readonly int Damage = 15;
@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     private PlayerMovement _movementController;
     private Jumper _jumpController;
     private InputService _inputService;
-    private Health _health;
+    private PlayerHealth _health;
     private float _horizontal;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         _movementController = GetComponent<PlayerMovement>();
         _jumpController = GetComponent<Jumper>();
         _inputService = GetComponent<InputService>();
-        _health = GetComponent<Health>();
+        _health = GetComponent<PlayerHealth>();
     }
 
     private void OnEnable()
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (_inputService.IsPushJump() == true)
+        if (_inputService.IsPushJump())
             _jumpController.Jump();
     }
 

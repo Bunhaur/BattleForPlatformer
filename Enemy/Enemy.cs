@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
         if(collision.collider.TryGetComponent(out Player player))
         {
             _animation.PlayAnimationHit();
-            _health.Hit(player.Damage);
+            _health.DicreaseHealth(player.Damage);
         }
     }
 

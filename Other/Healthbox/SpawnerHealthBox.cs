@@ -8,11 +8,9 @@ public class SpawnerHealthBox : MonoBehaviour
     [SerializeField] private Vector2 _spawnAreaMax;
     [SerializeField] private float _cooldown;
 
-    private Coroutine _createHealthBoxesWork;
-
     private void Start()
     {
-        _createHealthBoxesWork = StartCoroutine(CreateHealthBoxes());
+        StartCoroutine(CreateHealthBoxes());
     }
 
     private IEnumerator CreateHealthBoxes()
@@ -24,7 +22,7 @@ public class SpawnerHealthBox : MonoBehaviour
 
         while (enabled)
         {
-            while (Physics2D.OverlapCircle(GetRandomSpawnPoint(out randomPosition), radius) != null);
+            while (Physics2D.OverlapCircle(GetRandomSpawnPoint(out randomPosition), radius) != null) ;
 
             Instantiate(_prefab, randomPosition, Quaternion.identity);
 

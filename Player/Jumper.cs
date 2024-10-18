@@ -14,7 +14,7 @@ public class Jumper : MonoBehaviour
 
     public void Jump()
     {
-            _rigidbody.velocity = Vector3.zero;
-            _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
     }
 }

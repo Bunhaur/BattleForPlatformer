@@ -25,7 +25,6 @@ public class EnemyHealth : MonoBehaviour
                 Dead?.Invoke();
             }
         }
-
     }
 
     private IEnumerator TimeoutDamage()

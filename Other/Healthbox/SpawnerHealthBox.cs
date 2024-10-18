@@ -19,7 +19,6 @@ public class SpawnerHealthBox : MonoBehaviour
     {
         Vector3 randomPosition;
         float radius = 3f;
-
         var time = new WaitForSeconds(_cooldown);
 
         while (enabled)

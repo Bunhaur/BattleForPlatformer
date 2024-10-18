@@ -9,7 +9,6 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] private Player _player;
 
     private float _findDistance = 5;
-
     private Vector3 _point;
     private int _index;
 
